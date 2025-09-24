@@ -6,10 +6,10 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
 
     return (
-        <div className="flex h-screen w-screen bg-gray-900 text-white">
-            <div className="flex w-full h-full bg-gray-800 rounded-none shadow-lg overflow-hidden">
+        <div className="flex min-h-screen w-screen bg-gray-900 text-white">
+            <div className="flex flex-col lg:flex-row w-full bg-gray-800 shadow-lg">
                 {/* Formato izquierda */}
-                <div className="flex items-center justify-center w-1/2 bg-gray-900 h-full">
+                <div className="flex items-center justify-center p-8 lg:p-0 lg:w-1/2 bg-gray-900">
                     <img
                         src="../../../logo.jpg"
                         alt="Logo"
@@ -17,9 +17,9 @@ export default function LoginPage() {
                     />
                 </div>
                 {/* Formato derecha */}
-                <div className="flex flex-col justify-center w-1/2 p-8 h-full">
+                <div className="flex flex-col justify-center lg:w-1/2 p-8">
                     <h1 className="text-4xl font-bold mb-6">Steam+</h1>
-                    <h2 className="text-lg font-bold mb-4">Descripción de la aplicación</h2>
+                    <h2 className="text-lg font-bold mb-4">Tu plataforma de juegos mejorada</h2>
                     <input
                         className="mb-4 p-2 rounded text-black"
                         type="email"
