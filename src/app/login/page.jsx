@@ -43,11 +43,14 @@ export default function LoginPage() {
                         ------------------------------ o ------------------------------
                     </p>
                     <button
-                        className="bg-blue-600 hover:bg-blue-700 p-2 rounded text-white font-bold mt-4"
+                        className="bg-blue-600 hover:bg-blue-700 p-2 rounded text-white font-bold mt-4 flex items-center justify-center"
+                        style={{ minWidth: 0, width: "100%", position: "relative" }}
                     >
-                        Iniciar sesión con Google
+                        <div className="flex items-center justify-center w-full relative">
+                            <img src="../../../google_logo.png" alt="Google Logo" className="max-w-[20px] mr-2 absolute left-0" />
+                            <span className="w-full text-center">Iniciar sesión con Google</span>
+                        </div>
                     </button>
-                    <img src="../../../google-logo.jpg" alt="Google Logo" className="mt-2 max-w-[100px]" />
                     <p className="mt-4">
                         ¿No tienes una cuenta?{" "}
                         <a href="#" className="text-blue-400 hover:underline">
