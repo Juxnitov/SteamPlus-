@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import BtnLogin from "../components/login/btnLogin";
+import BtnLoginGoogle from "../components/login/btnLoginGoogle";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
@@ -34,30 +36,24 @@ export default function LoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <div className="flex justify-center">
-                        <button
-                            className="bg-purple-500 hover:bg-purple-600 p-2 rounded max-w-[300px] w-full text-white font-bold"
-                        >
-                            Iniciar sesión
-                        </button>
-                    </div>
-                    <div className="my-4 flex items-center w-full">
-                        <div className="flex-1 border-t border-purple-300"></div>
-                        <span className="mx-4 text-purple-700">o</span>
-                        <div className="flex-1 border-t border-purple-300"></div>
-                    </div>
-                    <div className="flex justify-center">
-                        <button
-                            className="bg-purple-400 hover:bg-purple-500 p-2 rounded max-w-[300px] text-white font-bold mt-4 flex items-center justify-center"
-                            style={{ minWidth: 0, width: "100%", position: "relative" }}
-                            >
-                            <div className="flex items-center justify-center w-full relative">
-                                <img src="../../../google_logo.png" alt="Google Logo" className="max-w-[20px] mr-2 absolute left-0" />
-                                <span className="w-full text-center">Iniciar sesión con Google</span>
-                            </div>
-                        </button>
-                    </div>
-                    <p className="mt-4 text-purple-700">
+                    <button
+                        className="bg-green-600 hover:bg-green-700 p-2 rounded text-white font-bold"
+                    >
+                        Iniciar sesión
+                    </button>
+                    <p className="mt-4">
+                        ------------------------------ o ------------------------------
+                    </p>
+                    <button
+                        className="bg-blue-600 hover:bg-blue-700 p-2 rounded text-white font-bold mt-4 flex items-center justify-center"
+                        style={{ minWidth: 0, width: "100%", position: "relative" }}
+                    >
+                        <div className="flex items-center justify-center w-full relative">
+                            <img src="../../../google_logo.png" alt="Google Logo" className="max-w-[20px] mr-2 absolute left-0" />
+                            <span className="w-full text-center">Iniciar sesión con Google</span>
+                        </div>
+                    </button>
+                    <p className="mt-4">
                         ¿No tienes una cuenta?{" "}
                         <a href="#" className="text-purple-500 hover:underline">
                             Regístrate
