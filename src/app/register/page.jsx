@@ -1,7 +1,8 @@
 "use client";
 import { useState } from "react";
-import BtnLogin from "../components/login/btnLogin";
-import BtnLoginGoogle from "../components/login/btnLoginGoogle";
+import BtnLogin from "../../components/login/btnLogin";
+import BtnLoginGoogle from "../../components/login/btnLoginGoogle";
+import Img from "../../components/ui/img";
 
 export default function RegisterPage() {
     const [email, setEmail] = useState("");
@@ -12,10 +13,10 @@ export default function RegisterPage() {
             <div className="flex flex-col lg:flex-row w-full bg-purple-100 rounded-lg shadow-lg m-4">
                 {/* Formato izquierda */}
                 <div className="flex items-center justify-center p-8 lg:p-0 lg:w-1/2 bg-purple-200">
-                    <img
-                        src="../../../logo.jpg"
-                        alt="Logo"
-                        className="max-w-[200px] rounded-[100px] shadow-lg"
+                    <Img
+                        src={"../../../logo.jpg"}
+                        alt={"Logo"}
+                        className={"max-w-[200px] rounded-[100px] shadow-lg"}
                     />
                 </div>
                 {/* Formato derecha */}

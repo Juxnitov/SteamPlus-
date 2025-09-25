@@ -1,3 +1,5 @@
+import Img from "../../components/ui/img";
+
 export default function BtnLoginGoogle({ mensaje }) {
     return (
         <button
@@ -6,7 +8,11 @@ export default function BtnLoginGoogle({ mensaje }) {
             onClick={() => alert('Continuar con Google')}
         >
             <div className="flex items-center justify-center w-full relative">
-                <img src="../../../google_logo.png" alt="Google Logo" className="max-w-[20px] mr-2 absolute left-0" />
+                <Img 
+                    src={"../../../google_logo.png"} 
+                    alt={"Google Logo"}
+                    className={"max-w-[20px] mr-2 absolute left-0"} 
+                />
                 <span className="w-full text-center">{mensaje}</span>
             </div>
         </button>
