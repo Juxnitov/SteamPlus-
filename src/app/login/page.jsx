@@ -36,24 +36,21 @@ export default function LoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <button
-                        className="bg-green-600 hover:bg-green-700 p-2 rounded text-white font-bold"
-                    >
-                        Iniciar sesión
-                    </button>
-                    <p className="mt-4">
-                        ------------------------------ o ------------------------------
-                    </p>
-                    <button
-                        className="bg-blue-600 hover:bg-blue-700 p-2 rounded text-white font-bold mt-4 flex items-center justify-center"
-                        style={{ minWidth: 0, width: "100%", position: "relative" }}
-                    >
-                        <div className="flex items-center justify-center w-full relative">
-                            <img src="../../../google_logo.png" alt="Google Logo" className="max-w-[20px] mr-2 absolute left-0" />
-                            <span className="w-full text-center">Iniciar sesión con Google</span>
-                        </div>
-                    </button>
-                    <p className="mt-4">
+                    <div className="flex justify-center">
+                        <BtnLogin 
+                            email={email} 
+                            password={password} 
+                        />
+                    </div>
+                    <div className="my-4 flex items-center w-full">
+                        <div className="flex-1 border-t border-purple-300"></div>
+                        <span className="mx-4 text-purple-700">o</span>
+                        <div className="flex-1 border-t border-purple-300"></div>
+                    </div>
+                    <div className="flex justify-center">
+                        <BtnLoginGoogle />
+                    </div>
+                    <p className="mt-4 text-purple-700">
                         ¿No tienes una cuenta?{" "}
                         <a href="#" className="text-purple-500 hover:underline">
                             Regístrate
