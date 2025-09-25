@@ -40,6 +40,7 @@ export default function LoginPage() {
                         <BtnLogin 
                             email={email} 
                             password={password} 
+                            mensaje={"Iniciar sesión"}
                         />
                     </div>
                     <div className="my-4 flex items-center w-full">
@@ -48,11 +49,13 @@ export default function LoginPage() {
                         <div className="flex-1 border-t border-purple-300"></div>
                     </div>
                     <div className="flex justify-center">
-                        <BtnLoginGoogle />
+                        <BtnLoginGoogle 
+                            mensaje={"Continuar con Google"}
+                        />
                     </div>
                     <p className="mt-4 text-purple-700">
                         ¿No tienes una cuenta?{" "}
-                        <a href="#" className="text-purple-500 hover:underline">
+                        <a href="/register" className="text-purple-500 hover:underline">
                             Regístrate
                         </a>
                     </p>
