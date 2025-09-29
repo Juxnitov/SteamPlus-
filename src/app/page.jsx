@@ -6,11 +6,13 @@ export default function Home() {
     <div>
       <h1>Bienvenido a Steam+</h1>
       <h2>Tu plataforma de juegos mejorada</h2>
-      <Img
-        className={"max-w-full h-auto"}
-        src={"../../../indieFestival.png"}
-        alt={"Banner Indie Festival"}
-      />
+      <a href="../../../festivals/indieFestival">
+        <Img
+          className={"max-w-full h-auto"}
+          src={"../../../indieFestival.png"}
+          alt={"Banner Indie Festival"}
+          />
+      </a>
     </div>
   );
 }
