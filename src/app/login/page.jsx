@@ -14,9 +14,9 @@ export default function LoginPage() {
                 {/* Formato izquierda */}
                 <div className="flex items-center justify-center p-8 lg:p-0 lg:w-1/2 bg-purple-200">
                     <Img
-                        src={"../../../logo.jpg"}
+                        src={"../../../logo.png"}
                         alt={"Logo"}
-                        className={"max-w-[200px] rounded-[100px] shadow-lg"}
+                        className={"max-w-[200px]  shadow-lg"}
                     />
                 </div>
                 {/* Formato derecha */}
