@@ -1,16 +1,11 @@
-import pool from "@/app/lib/db";
+import pool from "@/lib/db";
 
 export async function GET() {
     try {
-        const result = await pool.query('SELECT * FROM users');
-        return new Response(JSON.stringify(result.rows), {
-            status: 200,
-            headers: { 'Content-Type': 'application/json' },
-        });
+        const result = await pool.query('SELECT * FROM usuarios');
+        return Response.json(result.rows);
     } catch (error) {
-        return new Response(JSON.stringify({ error: 'Database query failed' }), {
-            status: 500,
-            headers: { 'Content-Type': 'application/json' },
-        });
-        }
+        console.error('Database query error:', error);
+        return new Response('error al obtener usuarios', { status: 500 });
     }
+}
