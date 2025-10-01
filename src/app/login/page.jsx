@@ -16,7 +16,7 @@ export default function LoginPage() {
                     <Img
                         src={"../../../logo.png"}
                         alt={"Logo"}
-                        className={"max-w-[200px]  shadow-lg"}
+                        className={"max-w-[200px] rounded-lg"}
                     />
                 </div>
                 {/* Formato derecha */}
