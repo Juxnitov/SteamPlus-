@@ -69,3 +69,7 @@ export function generateToken(user) {
     }
 
 }
+
+export function verifyToken(token){
+    return jwt.verify(token, SECRET_KEY_ACCESS_TOKEN);
+}

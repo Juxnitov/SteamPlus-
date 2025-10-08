@@ -23,7 +23,7 @@ export async function POST(request) {
         return Response.json(result.rows[0], { status: 201 });
 
     } catch (error) {
-        console.error('Database query error:', error);
+        console.log("error:",error)
         return new Response(JSON.stringify({ error: 'Database query failed' }), {
             status: 500,
             headers: { 'Content-Type': 'application/json' },
