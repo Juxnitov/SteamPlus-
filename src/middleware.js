@@ -1,6 +1,9 @@
     import { NextResponse } from "next/server";
     import jwt from 'jsonwebtoken'
     import { verifyToken } from "./app/api/auth/login/route";
+    import { routesPublics } from "./lib/routesPublics";
+
+
 
 export async function middleware(request){
     const routesPublics = ['/api/auth/login', '/api/auth/register']

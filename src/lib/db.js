@@ -1,12 +1,13 @@
-import pkg from 'pg'
-import { Pool } from 'pg'
+import { Pool } from "pg";
+ 
+const poolConfig = {
+  connectionString: process.env.DATABASE_URL,
+  ssl:
+    process.env.NODE_ENV === "production"
+      ? { rejectUnauthorized: false }
+      : false,
+};
 
-const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'ecommerce',
-    password: 'Sofia*2901*',
-    port: 5432
-})
-
-export default pool
+const pool = new Pool(poolConfig);
+ 
+export default pool;
