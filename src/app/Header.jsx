@@ -14,7 +14,7 @@ const Header = () => {
                             className="size-16 rounded-[100px] shadow-lg max-w-[200px]  object-cover"
                         />
                     </Link>
-                    <p className="font-bold text-xl">Steam</p>
+                    <p className="font-bold text-xl">Steam +</p>
                 </div>
                
                 <nav className="flex gap-6 items-center font-bold ">

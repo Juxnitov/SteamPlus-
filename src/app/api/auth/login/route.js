@@ -25,6 +25,7 @@ export async function POST(req) {
                 const {accessToken, refreshToken} = generateToken(users);
 
                 return Response.json({
+                    "message":"Login exitoso",
                     accessToken,
                     refreshToken
                 })  

@@ -3,11 +3,21 @@ import { useState } from "react";
 import BtnLogin from "../../components/login/btnLogin";
 import BtnLoginGoogle from "../../components/login/btnLoginGoogle";
 import Img from "../../components/ui/img";
+import { useLogin } from "@/hooks/useLogin";
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const { login } = useLogin();
+    async function handleLogin(e){
+        try{
+            e.preventDefault();
+            const result = await login(email, password);
+            console.log(result);
+        }catch(error){
+            console.log(error);
+        }
+    }
     return (
         <div className="flex min-h-screen w-screen bg-gradient-to-br from-purple-200 via-purple-300 to-purple-400 text-white">
             <div className="flex flex-col lg:flex-row w-full bg-purple-100 rounded-lg shadow-lg m-4">
@@ -42,6 +52,7 @@ export default function LoginPage() {
                             email={email} 
                             password={password} 
                             mensaje={"Iniciar sesión"}
+                            onClick={handleLogin}
                         />
                     </div>
                     <div className="my-4 flex items-center w-full">
