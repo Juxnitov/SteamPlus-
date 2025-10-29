@@ -1,8 +1,9 @@
-const { routesPublics } = require("@/middleware");
+const routesPublics = 
+[
+    '/api/auth/login',
+    '/api/auth/register'
+]
 
-routesPublics = ['/api/auth/login', '/api/auth/register']
-
-export{
-    routesPublics
-
-}
+export { 
+    routesPublics 
+} 

@@ -4,28 +4,33 @@ import { useState } from "react";
 export const useLogin = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [date, setDate] = useState(null);
+    const [data, setData] = useState(null);
     
     const login = async (email, password) => {
         try{
             setLoading(true);
             setError(null);
-
-            const Response = await apiFetch('/api/auth/login', {
+            setData(null);
+            const response = await apiFetch('/api/auth/login', {
                method: 'POST',
                body: JSON.stringify({email, password})
             });
 
-            if(!Response.ok) throw new Error ('Nooo mi compa, puro modo guerra pa')
+            console.log({response});
+            if(response.status != 200){
+                return false;
+            }
 
-            const dataJson = await Response.json();
-            setDate(dataJson)
-            return dataJson;
-        }catch(error){
+            if(!response.ok) throw new Error ('Nooo mi compa, puro modo guerra pa')
 
+            const dataJson = await response.json();
+            setData(dataJson)
+            return true;
+        }catch(err){
+            console.log({err})
         }finally{
 
         }
     }
-    return {login, loading, error, date}
+    return {login, loading, error, data}
 }

@@ -20,7 +20,6 @@ export async function apiFetch(url, options = {})
 
     const config = {
         ...options,
-        ...Options,
         headers
     }
     let response = await fetch(url, config)
@@ -31,17 +30,19 @@ export async function apiFetch(url, options = {})
         // TODO: llamar el endpoint de refresh token
         const isRefreshed = await refreshAccesToken(refresh_token)
 
-        if(!isRefreshed){
-            return new Error ('No se pudo refrescar el token')
-        }
-        access_token = getAccesToken()
-        const retryHeaders = {
-            ...headers,
-            'Authorization': `Bearer ${access_token}`
+        if(isRefreshed){
+            access_token = getAccesToken()
+            const retryHeaders = {
+                ...headers,
+                'Authorization': `Bearer ${access_token}`
+            }
+            response = await fetch(url, {...options, headers: retryHeaders})
+        }else{
+            clearTokens()
+            throw new Error('No se pudo refrescar el token')
         }
     }
-
-    response = await fetch(url, {...options, headers: retryHeaders})
+    return response
 }
 
 async function refreshAccesToken(refresh_token){

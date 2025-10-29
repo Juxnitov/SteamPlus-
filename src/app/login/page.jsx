@@ -8,12 +8,14 @@ import { useLogin } from "@/hooks/useLogin";
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { login } = useLogin();
+    const { login, data } = useLogin();
     async function handleLogin(e){
         try{
             e.preventDefault();
             const result = await login(email, password);
+            console.log({email, password})
             console.log(result);
+            console.log(data);
         }catch(error){
             console.log(error);
         }
