@@ -22,6 +22,7 @@ const Header = () => {
                     <Link href="/">About us</Link>
                     <Link href="/">Support</Link>
                     <Link href="/">Profile</Link>
+                    <Link href="/cart/">Cart</Link>
                     <button className="border-2 rounded-3xl px-4 py-1">Sign out</button>
                 </nav>
             </div>
