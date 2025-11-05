@@ -1,36 +1,46 @@
-import { apiFetch } from "@/lib/apliClient";
+import { apiFetch } from "@/lib/apiClient";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { setTokens } from "@/lib/auth"; // importar
 
 export const useLogin = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
+    const router = useRouter();
     
     const login = async (email, password) => {
-        try{
+        try {
             setLoading(true);
             setError(null);
             setData(null);
+
             const response = await apiFetch('/api/auth/login', {
-               method: 'POST',
-               body: JSON.stringify({email, password})
+                method: 'POST',
+                body: JSON.stringify({ email, password })
             });
 
-            console.log({response});
-            if(response.status != 200){
+            if (!response.ok) {
+                const msg = await response.text();
+                setError(msg);
                 return false;
             }
 
-            if(!response.ok) throw new Error ('Nooo mi compa, puro modo guerra pa')
-
             const dataJson = await response.json();
-            setData(dataJson)
-            return true;
-        }catch(err){
-            console.log({err})
-        }finally{
+            // Guardar ambos tokens
+            setTokens(dataJson.accessToken, dataJson.refreshToken);
 
+            setData(dataJson);
+            // router.push('/'); // redirigir
+            return true;
+        } catch (err) {
+            console.error("Error en login:", err);
+            setError("Error de conexión o servidor");
+            return false;
+        } finally {
+            setLoading(false);
         }
-    }
-    return {login, loading, error, data}
-}
+    };
+
+    return { login, loading, error, data };
+};

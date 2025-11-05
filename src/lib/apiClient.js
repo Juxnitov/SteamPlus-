@@ -31,10 +31,10 @@ export async function apiFetch(url, options = {})
         const isRefreshed = await refreshAccesToken(refresh_token)
 
         if(isRefreshed){
-            access_token = getAccesToken()
+            accessToken = getAccesToken()
             const retryHeaders = {
                 ...headers,
-                'Authorization': `Bearer ${access_token}`
+                'Authorization': `Bearer ${accessToken}`
             }
             response = await fetch(url, {...options, headers: retryHeaders})
         }else{
@@ -45,27 +45,24 @@ export async function apiFetch(url, options = {})
     return response
 }
 
-async function refreshAccesToken(refresh_token){
-    try{
-        // TODO: llamar al endpoint de refresh token
-        // este endpoint aun no existe se debe crear de crear en los api routes
-        const response = await fetch ('api/auth/refresh-token', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({refresh_token})
-        })
-        if(!response.ok) return false
-        const data = await response.json()
-        
-        if(data.access_token, data.refresh_token){
-            setTokens(data.access_token, data.refresh_token)
-            return true
-        }
+async function refreshAccesToken(refresh_token) {
+  try {
+    const response = await fetch('/api/auth/refresh-token', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refreshToken: refresh_token }) // 👈 cambio
+    });
 
-    }catch(error){
-        clearTokens()
-        false
+    if (!response.ok) return false;
+
+    const data = await response.json();
+    if (data.accessToken && data.refreshToken) {
+      setTokens(data.accessToken, data.refreshToken);
+      return true;
     }
+    return false;
+  } catch (error) {
+    clearTokens();
+    return false;
+  }
 }

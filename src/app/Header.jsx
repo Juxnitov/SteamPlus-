@@ -15,12 +15,13 @@ const Header = () => {
                         />
                     </Link>
                     <Link href="/">Steam +</Link>
-                </div>
-               
-                <nav className="flex gap-6 items-center font-bold ">
+                    <a href="">|</a>
                     <Link href="/">Store</Link> 
                     <Link href="/">About us</Link>
                     <Link href="/">Support</Link>
+                </div>
+               
+                <nav className="flex gap-6 items-center font-bold ">
                     <Link href="/">Profile</Link>
                     <Link href="/cart/">Cart</Link>
                     <button className="border-2 rounded-3xl px-4 py-1">Sign out</button>
