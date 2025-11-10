@@ -1,11 +1,11 @@
     import { NextResponse } from "next/server";
+    import { routesPublics } from './lib/routesPublics';
     import jwt from 'jsonwebtoken'
     import { verifyToken } from "./app/api/auth/login/route";
 
 
 
 export async function middleware(request){
-    const routesPublics = ['/api/auth/login', '/api/auth/register', '/', '/api/games/']
 
     if (routesPublics.some(route => request.nextUrl.pathname.startsWith(route))) {
         return NextResponse.next()

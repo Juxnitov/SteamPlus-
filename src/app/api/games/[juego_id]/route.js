@@ -3,7 +3,7 @@ import pool from "@/lib/db";
 export async function GET(req, { params }) {
   try {
     const { juego_id } = params;
-    console.log("📥 ID recibido:", juego_id);
+    console.log("ID recibido:", juego_id);
 
     if (!juego_id || isNaN(juego_id)) {
       return new Response(
@@ -34,7 +34,7 @@ export async function GET(req, { params }) {
     });
 
   } catch (error) {
-    console.error("🔥 Error en /api/games/[juego_id]:", error);
+    console.error("Error en /api/games/[juego_id]:", error);
     return new Response("Error interno del servidor", { status: 500 });
   }
 }
