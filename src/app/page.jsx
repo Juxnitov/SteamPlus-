@@ -20,6 +20,14 @@ export default function Home() {
   description="Shooter futurista."
 />
 
+    <AddGameItem
+  name="warzone"
+  price={120000}
+  quantity={1}
+  image="/elhalaso.jpg"
+  description="Shooter futurista."
+/>
+
       <h1 className="text-4xl font-bold mb-2 text-center">Steam+</h1>
       <h2 className="text-lg text-gray-600 mb-8 text-center">
         Tu plataforma de juegos mejorada
