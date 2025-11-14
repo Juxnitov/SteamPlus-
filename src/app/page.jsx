@@ -2,7 +2,7 @@
 import Img from "../components/ui/img";
 import { useChargeCatalog } from "@/hooks/useChargeCatalog";
 import { useEffect } from "react";
-
+import AddGameItem from "@/components/AddGameItem";
 export default function Home() {
   const { chargeCatalog, loading, error, data } = useChargeCatalog();
 
@@ -12,12 +12,20 @@ export default function Home() {
 
   return (
     <div className="p-6">
+      <AddGameItem
+  name="Halo Infinite"
+  price={120000}
+  quantity={1}
+  image="/halo.jpg"
+  description="Shooter futurista."
+/>
+
       <h1 className="text-4xl font-bold mb-2 text-center">Steam+</h1>
       <h2 className="text-lg text-gray-600 mb-8 text-center">
         Tu plataforma de juegos mejorada
       </h2>
 
-      {/* Banner principal */}
+      
       <div className="flex justify-center mb-8">
         <a href="../../../festivals/indieFestival">
           <Img
@@ -28,7 +36,7 @@ export default function Home() {
         </a>
       </div>
 
-      {/* Catálogo */}
+      
       <section>
         <h3 className="text-2xl font-bold mb-4">Catálogo de Juegos</h3>
 
