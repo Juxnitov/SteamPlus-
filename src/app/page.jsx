@@ -2,6 +2,7 @@
 import Img from "../components/ui/img";
 import { useChargeCatalog } from "@/hooks/useChargeCatalog";
 import { useEffect } from "react";
+import AddGame from "@/components/cart/AddGame";
 
 export default function Home() {
   const { chargeCatalog, loading, error, data } = useChargeCatalog();
@@ -12,6 +13,13 @@ export default function Home() {
 
   return (
     <div className="p-6">
+      <AddGame 
+  nombre="The Witcher 3"
+  precio={29.99}
+  cantidad={1}
+  imagen="/witcher3.jpg"
+  descripcion="RPG épico de mundo abierto"
+/>
       <h1 className="text-4xl font-bold mb-2 text-center">Steam+</h1>
       <h2 className="text-lg text-gray-600 mb-8 text-center">
         Tu plataforma de juegos mejorada

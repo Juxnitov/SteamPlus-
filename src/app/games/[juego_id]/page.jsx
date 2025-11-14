@@ -3,6 +3,7 @@ import { useParams } from "next/navigation";
 import { apiFetch } from "@/lib/apiClient";
 import Img from "@/components/ui/img";
 import { useEffect, useState } from "react";
+import AddGame from "@/components/cart/AddGame";
 
 export default function DetailGame() {
   const { juego_id } = useParams();
@@ -44,6 +45,7 @@ export default function DetailGame() {
   );
 
   return (
+    
     <div className="flex min-h-screen w-full bg-gradient-to-br from-purple-200 via-purple-300 to-purple-400 p-4">
       <div className="flex flex-col lg:flex-row w-full max-w-4xl bg-purple-100 rounded-lg shadow-lg m-auto">
         {/* Columna Izquierda: Imagen */}
