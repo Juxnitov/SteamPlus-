@@ -16,7 +16,7 @@ export default function Home() {
   name="Halo Infinite"
   price={120000}
   quantity={1}
-  image="/halo.jpg"
+  image="/elhalaso.jpg"
   description="Shooter futurista."
 />
 
