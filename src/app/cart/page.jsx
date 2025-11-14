@@ -1,11 +1,10 @@
 "use client";
+import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 
 export default function CartPage() {
   const { cart, removeFromCart } = useCart();
-  const router = useRouter();
 
   const total = cart.reduce((acc, p) => acc + p.price * p.quantity, 0);
 
@@ -35,22 +34,18 @@ export default function CartPage() {
               <p className="font-bold">${p.price.toLocaleString()}</p>
             </div>
 
-            <div className="flex flex-col items-center gap-2">
-              <div className="text-xl font-bold">{p.quantity}</div>
+            <div className="text-xl font-bold">{p.quantity}</div>
 
-              {/* Botón remover */}
-              <button
-                onClick={() => removeFromCart(p.name)}
-                className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
-              >
-                Remover
-              </button>
-            </div>
+            <button
+              onClick={() => removeFromCart(p.name)}
+              className="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+            >
+              Remover
+            </button>
           </div>
         ))}
       </div>
 
-      {/* Footer */}
       {cart.length > 0 && (
         <div className="fixed bottom-0 left-0 w-full bg-white p-4 shadow-xl border-t">
           <div className="max-w-3xl mx-auto flex justify-between items-center">
@@ -58,12 +53,11 @@ export default function CartPage() {
               Total: ${total.toLocaleString()}
             </span>
 
-            <button
-              onClick={() => router.push("/checkout")}
-              className="px-6 py-3 bg-green-600 text-white rounded-lg text-lg hover:bg-green-700"
-            >
-              Comprar todo
-            </button>
+            <Link href="/checkout">
+              <button className="px-6 py-3 bg-green-600 text-white rounded-lg text-lg hover:bg-green-700">
+                Comprar todo
+              </button>
+            </Link>
           </div>
         </div>
       )}
