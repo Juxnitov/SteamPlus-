@@ -23,7 +23,7 @@ export default function LoginPage() {
     return (
         <div className="flex min-h-screen w-screen bg-gradient-to-br from-purple-200 via-purple-300 to-purple-400 text-white">
             <div className="flex flex-col lg:flex-row w-full bg-purple-100 rounded-lg shadow-lg m-4">
-                {/* Formato izquierda */}
+                
                 <div className="flex items-center justify-center p-8 lg:p-0 lg:w-1/2 bg-purple-200">
                     <Img
                         src={"../../../logo.png"}
@@ -31,7 +31,7 @@ export default function LoginPage() {
                         className={"max-w-[200px] rounded-lg"}
                     />
                 </div>
-                {/* Formato derecha */}
+                
                 <div className="flex flex-col justify-center lg:w-1/2 p-8">
                     <h1 className="text-4xl font-bold mb-6 text-purple-900">Steam+</h1>
                     <h2 className="text-lg font-bold mb-4 text-purple-800">Tu plataforma de juegos mejorada</h2>

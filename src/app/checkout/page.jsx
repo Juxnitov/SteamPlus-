@@ -28,7 +28,7 @@ export default function CheckoutPage() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
 
-        {/* Nombre */}
+        
         <div>
           <label className="block font-semibold mb-1">Nombre completo</label>
           <input
@@ -42,7 +42,7 @@ export default function CheckoutPage() {
           />
         </div>
 
-        {/* Número de tarjeta */}
+        
         <div>
           <label className="block font-semibold mb-1">Número de tarjeta</label>
           <input
@@ -56,7 +56,7 @@ export default function CheckoutPage() {
           />
         </div>
 
-        {/* Fecha de expiración */}
+        
         <div>
           <label className="block font-semibold mb-1">Fecha de expiración</label>
           <input
