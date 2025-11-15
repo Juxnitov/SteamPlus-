@@ -1,10 +1,11 @@
 "use client";
-import Link from "next/link";
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function CartPage() {
-  const { cart, removeFromCart } = useCart();
+  
+  const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
 
   const total = cart.reduce((acc, p) => acc + p.price * p.quantity, 0);
 
@@ -34,7 +35,24 @@ export default function CartPage() {
               <p className="font-bold">${p.price.toLocaleString()}</p>
             </div>
 
-            <div className="text-xl font-bold">{p.quantity}</div>
+            
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => decreaseQuantity(p.name)}
+                className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"
+              >
+                –
+              </button>
+
+              <span className="text-xl font-bold w-8 text-center">{p.quantity}</span>
+
+              <button
+                onClick={() => increaseQuantity(p.name)}
+                className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"
+              >
+                +
+              </button>
+            </div>
 
             <button
               onClick={() => removeFromCart(p.name)}

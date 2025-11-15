@@ -25,11 +25,41 @@ export function CartProvider({ children }) {
     setCart((prev) => prev.filter((p) => p.name !== name));
   };
 
+  const increaseQuantity = (name) => {
+    setCart((prev) =>
+      prev.map((p) =>
+        p.name === name ? { ...p, quantity: p.quantity + 1 } : p
+      )
+    );
+  };
+
+ const decreaseQuantity = (name) => {
+  setCart((prev) =>
+    prev
+      .map((p) =>
+        p.name === name
+          ? { ...p, quantity: p.quantity - 1 }
+          : p
+      )
+      .filter((p) => p.quantity > 0) 
+  );
+};
+
+
   const clearCart = () => setCart([]);
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart, receipt, setReceipt }}
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        increaseQuantity,
+        decreaseQuantity,
+        clearCart,
+        receipt,
+        setReceipt
+      }}
     >
       {children}
     </CartContext.Provider>
