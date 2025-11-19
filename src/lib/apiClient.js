@@ -14,8 +14,17 @@ export async function apiFetch(url, options = {})
     {
         'Content-Type': 'application/json',
         ...(options.headers || {}),
-        ...(isPublicRoute ? {} : {'Authorization': `Bearer ${accessToken}`})
-        
+        // Enviar token si existe, incluso en rutas públicas (aunque no sea requerido)
+        ...(accessToken ? {'Authorization': `Bearer ${accessToken}`} : {})
+    }
+
+    // Debug: verificar que el token se esté enviando
+    if (!isPublicRoute) {
+        if (accessToken) {
+            console.log('✅ Enviando token para:', url);
+        } else {
+            console.warn('⚠️ Ruta protegida sin token:', url);
+        }
     }
 
     const config = {

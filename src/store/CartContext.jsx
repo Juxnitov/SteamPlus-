@@ -25,6 +25,7 @@ export function CartProvider({ children }) {
     const cantidad = Math.max(1, parseInt(item?.cantidad ?? 1));
     const imagen = String(item?.imagen ?? "");
     const descripcion = String(item?.descripcion ?? "");
+    const juego_id = item?.juego_id ? Number(item.juego_id) : null;
     if (!nombre) return;
     setItems((prev) => {
       const idx = prev.findIndex((p) => p.nombre === nombre);
@@ -33,7 +34,7 @@ export function CartProvider({ children }) {
         next[idx] = { ...next[idx], cantidad: next[idx].cantidad + cantidad };
         return next;
       }
-      return [...prev, { nombre, precio, cantidad, imagen, descripcion }];
+      return [...prev, { nombre, precio, cantidad, imagen, descripcion, juego_id }];
     });
   };
 

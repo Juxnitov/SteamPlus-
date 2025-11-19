@@ -21,17 +21,34 @@ export const useLogin = () => {
             });
 
             if (!response.ok) {
-                const msg = await response.text();
-                setError(msg);
+                let errorMsg = "Error al iniciar sesión";
+                try {
+                    const errorData = await response.json();
+                    errorMsg = errorData.message || errorMsg;
+                } catch {
+                    const msg = await response.text();
+                    errorMsg = msg || errorMsg;
+                }
+                setError(errorMsg);
                 return false;
             }
 
             const dataJson = await response.json();
             // Guardar ambos tokens
-            setTokens(dataJson.accessToken, dataJson.refreshToken);
+            if (dataJson.accessToken && dataJson.refreshToken) {
+                setTokens(dataJson.accessToken, dataJson.refreshToken);
+            } else {
+                console.error('❌ No se recibieron tokens del servidor');
+                setError("Error: No se recibieron tokens del servidor");
+                return false;
+            }
 
             setData(dataJson);
-            // router.push('/'); // redirigir
+            // Redirigir al inicio después de login exitoso
+            // Usar setTimeout para asegurar que el estado se actualice antes de redirigir
+            setTimeout(() => {
+                router.push('/');
+            }, 100);
             return true;
         } catch (err) {
             console.error("Error en login:", err);

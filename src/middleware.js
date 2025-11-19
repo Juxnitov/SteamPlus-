@@ -11,9 +11,12 @@ export async function middleware(request){
         return NextResponse.next()
     }
 
-    const token = request.headers.get('authorization')?.split(" ")[1]
+    // Buscar el header Authorization (case-insensitive)
+    const authHeader = request.headers.get('authorization') || request.headers.get('Authorization');
+    const token = authHeader?.split(" ")[1]
 
     if (!token) {
+        console.log("❌ Middleware: Token no proporcionado para", request.nextUrl.pathname);
         return NextResponse.json({ message: "Token no proporcionado" }, { status: 401 })
     }
 
@@ -21,7 +24,7 @@ export async function middleware(request){
         verifyToken(token)
         return NextResponse.next()
     }catch(error){
-        console.log("Error: ",error)
+        console.log("❌ Middleware: Error verificando token:", error.message)
         return NextResponse.json({message: "Invalid token"}, {status:401})
     }
 }
