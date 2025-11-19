@@ -1,8 +1,17 @@
 import pool from "@/lib/db";
 
 export async function GET(req){
-    try{
-        const result = await pool.query('SELECT * FROM juegos ORDER BY registro DESC LIMIT 10;');
+    const { searchParams } = new URL(req.url);
+    const categoria = searchParams.get('categoria');
+
+   try {
+        let query = 'SELECT * FROM juegos ORDER BY registro DESC';
+        let values = [];
+        if (categoria) {
+            query = 'SELECT * FROM juegos WHERE LOWER(categoria) = LOWER($1) ORDER BY registro DESC';
+            values = [categoria];
+       }
+        const result = await pool.query(query, values);
         return Response.json({
             data: result.rows,
             message: "list of most recent games",

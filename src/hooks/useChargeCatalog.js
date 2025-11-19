@@ -1,5 +1,6 @@
+// c:\Users\juxni\Documents\u\frameworks\parcial\src\hooks\useChargeCatalog.js
 "use client";
-import { useState } from 'react';
+import { useState, useCallback } from 'react'; // Importa useCallback
 import { apiFetch } from '../lib/apiClient';
 
 export const useChargeCatalog = () => {
@@ -7,7 +8,8 @@ export const useChargeCatalog = () => {
     const [error, setError] = useState(null);
     const [data, setData] = useState(null);
 
-    const chargeCatalog = async () => {
+    // Envuelve la función en useCallback
+    const chargeCatalog = useCallback(async () => {
         try {
             setLoading(true);
             setError(null);
@@ -31,7 +33,7 @@ export const useChargeCatalog = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, []); // Array de dependencias vacío para que la función no se vuelva a crear
 
     return { chargeCatalog, loading, error, data };
 };
