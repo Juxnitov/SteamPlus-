@@ -2,8 +2,9 @@
 import { useChargeCatalog } from "../hooks/useChargeCatalog";
 import { useEffect, useState } from "react";
 import Img from "../components/ui/img";
-import { apiFetch } from "../lib/apiClient";
-
+import { useChargeCatalog } from "@/hooks/useChargeCatalog";
+import { useEffect } from "react";
+import AddGameItem from "@/components/AddGameItem";
 export default function Home() {
   const { chargeCatalog, loading, error, data } = useChargeCatalog();
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -15,12 +16,28 @@ export default function Home() {
   
   return (
     <div className="p-6">
-      <h1 className="text-4xl font-bold mb-2 text-center">Bienvenido a Steam+</h1>
+      <AddGameItem
+  name="Halo Infinite"
+  price={120000}
+  quantity={1}
+  image="/elhalaso.jpg"
+  description="Shooter futurista."
+/>
+
+    <AddGameItem
+  name="warzone"
+  price={120000}
+  quantity={1}
+  image="/elhalaso.jpg"
+  description="Shooter futurista."
+/>
+
+      <h1 className="text-4xl font-bold mb-2 text-center">Steam+</h1>
       <h2 className="text-lg text-gray-600 mb-8 text-center">
         Tu plataforma de juegos mejorada
       </h2>
 
-      {/* Banner principal */}
+      
       <div className="flex justify-center mb-8">
         <a href="../../../festivals/indieFestival">
           <Img
@@ -31,20 +48,7 @@ export default function Home() {
         </a>
       </div>
 
-      {/* Filtro de Categorías */}
-       <div className="mb-4">
-          <label htmlFor="categoria" className="mr-2">Filtrar por categoría:</label>
-          <select
-            id="categoria"
-            className="border rounded p-1"
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            value={selectedCategory}
-          >
-            <option value="">Todas las categorías</option>
-            {categories.map((category) => (<option key={category.categoria} value={category.categoria}>{category.categoria}</option>))}
-          </select>
-        </div>
-      {/* Catálogo */}
+      
       <section>
         <h3 className="text-2xl font-bold mb-4">Catálogo de Juegos</h3>
 

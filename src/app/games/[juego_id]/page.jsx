@@ -46,7 +46,7 @@ export default function DetailGame() {
   return (
     <div className="flex min-h-screen w-full bg-gradient-to-br from-purple-200 via-purple-300 to-purple-400 p-4">
       <div className="flex flex-col lg:flex-row w-full max-w-4xl bg-purple-100 rounded-lg shadow-lg m-auto">
-        {/* Columna Izquierda: Imagen */}
+        
         <div className="flex items-center justify-center p-8 lg:w-1/3 bg-purple-200 rounded-l-lg">
           <Img
             src={"/hola.jpg"}
@@ -55,7 +55,7 @@ export default function DetailGame() {
           />
         </div>
 
-        {/* Columna Derecha: Detalles */}
+        
         <div className="flex flex-col justify-center lg:w-2/3 p-8">
           <h1 className="text-4xl font-bold mb-4 text-purple-900">{game.titulo}</h1>
           <div className="space-y-2 mb-6">

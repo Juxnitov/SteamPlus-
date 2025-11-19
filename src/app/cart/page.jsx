@@ -1,20 +1,84 @@
+"use client";
+import { useCart } from "@/context/CartContext";
+import Image from "next/image";
+import Link from "next/link";
 
+export default function CartPage() {
+  
+  const { cart, removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
 
-const CartPage = () => {
-    return (
-        <div>
+  const total = cart.reduce((acc, p) => acc + p.price * p.quantity, 0);
+
+  return (
+    <div className="max-w-3xl mx-auto p-4 space-y-6">
+      <h1 className="text-3xl font-bold">Carrito de compras</h1>
+
+      <div className="space-y-4">
+        {cart.length === 0 && <p>No hay productos en el carrito.</p>}
+
+        {cart.map((p, i) => (
+          <div
+            key={i}
+            className="flex items-center gap-4 border p-3 rounded-lg"
+          >
+            <Image
+              src={p.image}
+              width={90}
+              height={90}
+              className="rounded-md object-cover"
+              alt={p.name}
+            />
+
+            <div className="flex flex-col flex-1">
+              <h2 className="text-lg font-semibold">{p.name}</h2>
+              <p className="text-gray-600">{p.description}</p>
+              <p className="font-bold">${p.price.toLocaleString()}</p>
+            </div>
+
             
-            <h1>Your Cart</h1>
-            {}
-            <ul>
-                <li>plodu 1 - $10.00</li>
-                <li>plodu 2 - $15.00</li>
-                <li>plodu 3 - $20.00</li>
-            </ul>
-            <h2>Total: $45.00</h2>
-            <button className="border-2 rounded-3xl px-4 py-1">Proceed to Checkout</button>
-        </div>
-    );
-};
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => decreaseQuantity(p.name)}
+                className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"
+              >
+                –
+              </button>
 
-export default CartPage;
+              <span className="text-xl font-bold w-8 text-center">{p.quantity}</span>
+
+              <button
+                onClick={() => increaseQuantity(p.name)}
+                className="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400"
+              >
+                +
+              </button>
+            </div>
+
+            <button
+              onClick={() => removeFromCart(p.name)}
+              className="px-3 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+            >
+              Remover
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {cart.length > 0 && (
+        <div className="fixed bottom-0 left-0 w-full bg-white p-4 shadow-xl border-t">
+          <div className="max-w-3xl mx-auto flex justify-between items-center">
+            <span className="text-xl font-bold">
+              Total: ${total.toLocaleString()}
+            </span>
+
+            <Link href="/checkout">
+              <button className="px-6 py-3 bg-green-600 text-white rounded-lg text-lg hover:bg-green-700">
+                Comprar todo
+              </button>
+            </Link>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
