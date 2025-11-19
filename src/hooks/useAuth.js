@@ -2,11 +2,13 @@
 import { useState, useEffect } from "react";
 import { getAccesToken, clearTokens } from "@/lib/auth";
 import { useRouter } from "next/navigation";
+import { useCart } from "@/store/CartContext";
 
 export const useAuth = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [loading, setLoading] = useState(true);
     const router = useRouter();
+    const { clearCart } = useCart();
 
     const checkAuth = () => {
         if (typeof window === "undefined") {
@@ -52,6 +54,7 @@ export const useAuth = () => {
     const logout = () => {
         if (typeof window !== "undefined") {
             clearTokens();
+            clearCart();
             setIsAuthenticated(false);
             // Disparar evento para actualizar otros componentes
             window.dispatchEvent(new Event('auth-change'));

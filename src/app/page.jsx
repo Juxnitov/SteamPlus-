@@ -3,16 +3,20 @@ import Img from "../components/ui/img";
 import { useChargeCatalog } from "@/hooks/useChargeCatalog";
 import { useEffect, useMemo, useState } from "react";
 import { useCart } from "@/store/CartContext";
+import { useAuth } from "@/hooks/useAuth";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 export default function Home() {
   const { chargeCatalog, loading, error, data } = useChargeCatalog();
   const { addItem } = useCart();
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
 
   // Categorías disponibles
-  const availableCategories = ["Acción", "RPG", "Indie", "Estrategia", "Deportes", "Aventura"];
+  const availableCategories = ["Acción", "RPG", "Indie", "Estrategia", "Deportes", "Aventura", "Novela Visual"];
 
   useEffect(() => {
     chargeCatalog();
@@ -44,13 +48,18 @@ export default function Home() {
   }, [data, searchTerm, selectedCategory]);
 
   const handleAddToCart = (juego) => {
+    if (!isAuthenticated) {
+      router.push("/login");
+      return;
+    }
+
     addItem({
       nombre: juego.titulo,
       precio: parseFloat(juego.precio),
       cantidad: 1,
-      imagen: "/logo.png",
+      imagen: juego.imagen || "/logo.png",
       descripcion: juego.descripcion || "Sin descripción",
-      juego_id: juego.juego_id
+      juego_id: juego.juego_id,
     });
   };
 
@@ -158,7 +167,7 @@ export default function Home() {
                     <div className="mb-3 cursor-pointer">
                       <div className="w-full h-48 bg-purple-200 rounded-lg flex items-center justify-center mb-3 overflow-hidden">
                         <Img
-                          src={"/logo.png"}
+                          src={juego.imagen || "/logo.png"}
                           alt={juego.titulo}
                           className="object-cover w-full h-full"
                         />

@@ -22,10 +22,11 @@ export function CartProvider({ children }) {
   const addItem = (item) => {
     const nombre = String(item?.nombre ?? "").trim();
     const precio = Number(item?.precio ?? 0);
-    const cantidad = Math.max(1, parseInt(item?.cantidad ?? 1));
+    const cantidad = Math.max(1, parseInt(item?.cantidad ?? 1, 10));
     const imagen = String(item?.imagen ?? "");
     const descripcion = String(item?.descripcion ?? "");
     const juego_id = item?.juego_id ? Number(item.juego_id) : null;
+    const dlc_id = item?.dlc_id ? Number(item.dlc_id) : null;
     if (!nombre) return;
     setItems((prev) => {
       const idx = prev.findIndex((p) => p.nombre === nombre);
@@ -34,12 +35,12 @@ export function CartProvider({ children }) {
         next[idx] = { ...next[idx], cantidad: next[idx].cantidad + cantidad };
         return next;
       }
-      return [...prev, { nombre, precio, cantidad, imagen, descripcion, juego_id }];
+      return [...prev, { nombre, precio, cantidad, imagen, descripcion, juego_id, dlc_id }];
     });
   };
 
   const updateQty = (nombre, cantidad) => {
-    const qty = Math.max(1, parseInt(cantidad ?? 1));
+    const qty = Math.max(1, parseInt(cantidad ?? 1, 10));
     setItems((prev) => prev.map((p) => (p.nombre === nombre ? { ...p, cantidad: qty } : p)));
   };
 

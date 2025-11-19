@@ -3,10 +3,10 @@ import Img from "@/components/ui/img";
 import { useCart } from "@/store/CartContext";
 import { useState } from "react";
 import { apiFetch } from "@/lib/apiClient";
-import { getAccesToken } from "@/lib/auth";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { generateInvoicePDF } from "@/utils/generateInvoice";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function CartPage() {
   const { items, updateQty, removeItem, clearCart, total } = useCart();
@@ -15,8 +15,7 @@ export default function CartPage() {
   const [success, setSuccess] = useState(false);
   const [clientName, setClientName] = useState("");
   const router = useRouter();
-
-  const isAuthenticated = typeof window !== "undefined" && getAccesToken() !== null;
+  const { isAuthenticated } = useAuth();
 
   const comprarTodo = async () => {
     // Verificar si el usuario está autenticado
